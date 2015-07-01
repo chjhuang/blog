@@ -41,9 +41,22 @@
 <a id="系统安装" class="anchor" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>系统安装</h2>
 
 <ol>
-<li>电脑为<em><code>Thinkpad T430</code></em>，采用Windows和Ubuntu双系统硬盘安装，硬盘模式为<em><code>UEFI+GPT</code></em>。</li>
-<li>从6V下载最新<em><code>Ubuntu 15.04</code></em>镜像(1G大小)，用<em><code>UltraISO</code></em>-&gt;文件-&gt;打开...，然后启动-&gt;写入硬盘映射，刻录到<em><code>U盘</code></em>。(<em>注意</em>：如果用UltraISO-&gt;文件-&gt;打开Ubuntu镜像时只有EFI文件夹，可以先用系统自带的ISO打开方式加载镜像，然后UltraISO-&gt;文件-&gt;打开光盘-&gt;选择刚刚ISO挂载的盘符，接着写入硬盘映射)。</li>
-<li>选择U盘启动，选择安装方式的第三项自定义安装</li>
+<li><p>电脑为<em><code>Thinkpad T430</code></em>，采用Windows和Ubuntu双系统硬盘安装。引导方式及硬盘分区表为<em><code>UEFI+GPT</code></em>，与<em><code>BIOS+MBR</code></em>不同的是，所有系统的引导程序都会放到一个隐藏的格式为FAT32的<em><code>EFI</code></em>引导分区(/dev/sda2)。所以若要配置多系统的引导，则需要修改该分区中的.efi文件。例如在Windows+CentOS中，就需要安装第三方引导程序refind到EFI分区，并通过修改refind.conf文件来引导多系统的加载。不过Ubuntu不用你费事，其grub引导程序能够帮你解决一切。</p></li>
+<li><p>接下来是<em><code>U盘</code></em>启动盘的制作。从6V下载最新<em><code>Ubuntu 15.04</code></em>镜像(1G大小)，用<em><code>UltraISO</code></em>-&gt;文件-&gt;打开...，然后启动-&gt;写入硬盘映射，刻录到U盘。(<em>注意</em>：如果用UltraISO-&gt;文件-&gt;打开Ubuntu镜像时只有EFI文件夹，可以先用系统自带的ISO打开方式加载镜像，然后UltraISO-&gt;文件-&gt;打开光盘-&gt;选择刚刚ISO挂载的盘符，接着写入硬盘映射)。</p></li>
+<li>
+<p>选择U盘启动，安装方式选择第三项<code>自定义安装</code>，即手动进行分区和选择挂载点。我留给Ubuntu系统的磁盘空间大小大概有120G，具体分区情况为：</p>
+
+<ul>
+<li>
+<code>/</code>   30G(系统根目录挂载点)</li>
+<li>
+<code>/var</code>   10G(系统运行时要改变的数据)</li>
+<li>
+<code>swap</code>   4G(内存交换区)</li>
+<li>
+<code>/home</code>   剩下的所有空间</li>
+</ul>
+</li>
 <li>
 <p>系统初始配置</p>
 
@@ -56,14 +69,16 @@
 <li>
 <p>设置开机启动等待时间</p>
 
-<div class="highlight highlight-sh"><pre>sudo gedit /etc/default/grub   <span class="pl-s"><span class="pl-pds">"</span> 修改GRUB_TIMEOUT项</span>
-<span class="pl-s">sudo update-grub</span></pre></div>
+<div class="highlight highlight-sh"><pre>sudo gedit /etc/default/grub   <span class="pl-c"># 修改GRUB_TIMEOUT项</span>
+sudo update-grub</pre></div>
 </li>
 <li>
-<p>设置系统更新源</p>
+<p>设置系统更新源(<a href="http://mirrors.tuna.tsinghua.edu.cn/" title="tsinghua">清华大学源</a>)</p>
 
-<div class="highlight highlight-sh"><pre>sudo gedit /etc/apt/sources/list
+<div class="highlight highlight-sh"><pre>sudo gedit /etc/apt/sources.list
 sudo apt-get update</pre></div>
+
+<p>系统sources.list文件已上传至<a href="https://github.com/chjhuang/blog" title="sources.list">Github</a>。</p>
 </li>
 </ul>
 </li>
@@ -113,10 +128,10 @@ vim <span class="pl-k">~</span>/.bashrc
 <li>
 <p>方法1</p>
 
-<div class="highlight highlight-sh"><pre>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb  <span class="pl-s"><span class="pl-pds">"</span>获取软件包</span>
-<span class="pl-s">sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-pds">"</span></span>安装deb软件包
+<div class="highlight highlight-sh"><pre>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb  <span class="pl-c"># 获取软件包</span>
+sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-c"># 安装deb软件包</span>
 sudo apt-get install -f  <span class="pl-s"><span class="pl-pds">"</span>递归安装所有上一指令缺少的依赖库</span>
-<span class="pl-s">sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-pds">"</span></span>解决依赖库问题后重装</pre></div>
+<span class="pl-s">sudo dpkg -i google-chrome-stable_current_amd64.deb  # 解决依赖库问题后重装</span></pre></div>
 </li>
 <li><p>方法2</p></li>
 </ul>
@@ -220,7 +235,7 @@ sudo chmod 755 /usr/share/fonts/win/<span class="pl-k">*</span></pre></div>
 <p>更新系统字体缓存</p>
 
 <div class="highlight highlight-sh"><pre>sudo <span class="pl-c1">fc</span>-cache -f -s -v
-<span class="pl-c1">fc</span>-list :lang=zh  <span class="pl-s"><span class="pl-pds">"</span> 查看系统现有中文字体</span></pre></div>
+<span class="pl-c1">fc</span>-list :lang=zh  <span class="pl-c"># 查看系统现有中文字体</span></pre></div>
 </li>
 </ul>
 </li>
@@ -231,12 +246,65 @@ sudo chmod 755 /usr/share/fonts/win/<span class="pl-k">*</span></pre></div>
 <h3>
 <a id="git" class="anchor" href="#git" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git</h3>
 
+<ul>
+<li>安装</li>
+</ul>
+
 <div class="highlight highlight-sh"><pre>sudo apt-get install git</pre></div>
+
+<ul>
+<li>
+<p><a href="https://help.github.com/articles/generating-ssh-keys/" title="generating ssh keys">配置</a></p>
+
+<ol>
+<li>
+<p>检查系统是否已有可用<em><code>SSH keys</code></em>：</p>
+
+<div class="highlight highlight-sh"><pre>ls -al <span class="pl-k">~</span>/.ssh  <span class="pl-c"># 列出现有SSH keys</span></pre></div>
+</li>
+<li>
+<p>如果有，直接跳到第三步，否则生成一个新的SSH keys：</p>
+
+<div class="highlight highlight-sh"><pre>ssh-keygen -t rsa -b 4096 -C <span class="pl-s"><span class="pl-pds">"</span>your_email@example.com<span class="pl-pds">"</span></span> 
+<span class="pl-c"># Creates a new ssh key, using the provided email as a label</span></pre></div>
+
+<p>选择默认密钥对保存路径(即弹出"Enter file in which to save the key(default path):"时，按<em><code>Enter</code></em>继续)，并选择一个好的安全的<a href="https://help.github.com/articles/working-with-ssh-key-passphrases/" title="passphrase">passphrase</a>。</p>
+</li>
+<li>
+<p>将key加入ssh-agent：</p>
+
+<pre><code># start the ssh-agent in the background
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa  # Add your SSH key to the ssh-agent
+</code></pre>
+</li>
+<li>
+<p>将key绑定到github账户：</p>
+
+<pre><code># Downloads and installs xclip.
+sudo apt-get install xclip
+# Copies the contents of the id_rsa.pub file to your clipboard&gt;
+xclip -sel clip &lt; ~/.ssh/id_rsa.pub
+</code></pre>
+
+<p>然后将其粘贴到GitHub账户Settings-&gt;SSH key-&gt;Add SSH key。</p>
+</li>
+<li>
+<p>验证连接</p>
+
+<pre><code>ssh -T git@github.com  # Attempts to ssh to GitHub
+</code></pre>
+
+<p>Type <code>yes</code>，如果看到"Hi username! You've successfully authenticated, but GitHub does not provide shell access."，则说明连接成功。</p>
+</li>
+</ol>
+</li>
+</ul>
 
 <h3>
 <a id="nodejs" class="anchor" href="#nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>NodeJS</h3>
 
-<div class="highlight highlight-sh"><pre>sudo apt-get install npm  或者 sudo apt-get install nodejs</pre></div>
+<div class="highlight highlight-sh"><pre>sudo apt-get install npm  <span class="pl-c"># 或者 sudo apt-get install nodejs</span></pre></div>
       </section>
     </div>
 
