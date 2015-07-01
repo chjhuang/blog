@@ -1,2 +1,2 @@
 # Blog
-Just do what you want!
+Reading, Writing and Learning!
