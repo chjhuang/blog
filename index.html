@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Blog by chjhuang</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Blog</h1>
+        <h2>Just do what you want!</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/chjhuang/blog/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/chjhuang/blog/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/chjhuang/blog" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="ubuntu桌面环境搭建小记" class="anchor" href="#ubuntu%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ubuntu桌面环境搭建小记</h1>
+
+<p>作者 Jeff Chan(<a href="https://github.com/chjhuang" class="user-mention">@chjhuang</a>) | 发布于 2015-06-30</p>
+
+<p>趁着夏季小学期课少，闲來无事终于决定要彻底将工作开发环境从Windows转到Linux下了。为了方便以后重装或者移植到新的PC，所以现在将这几天的折腾过程进行记录存档。</p>
+
+<p>之前断断续续玩过一段时间的CentOS，也玩过一会Ubuntu。虽然个人比较喜欢CentOS蓝黑的清爽风格，但是其软件管理、依赖解决等没有Ubuntu的好(比如安装Chrome，依赖库解决比较费事)，所以为了省事(不想折腾)，最终选择了Ubuntu发行版。</p>
+
+<h2>
+<a id="系统安装" class="anchor" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>系统安装</h2>
+
+<ol>
+<li>电脑为<em><code>Thinkpad T430</code></em>，采用Windows和Ubuntu双系统硬盘安装，硬盘模式为<em><code>UEFI+GPT</code></em>。</li>
+<li>从6V下载最新<em><code>Ubuntu 15.04</code></em>镜像(1G大小)，用<em><code>UltraISO</code></em>-&gt;文件-&gt;打开...，然后启动-&gt;写入硬盘映射，刻录到<em><code>U盘</code></em>。(<em>注意</em>：如果用UltraISO-&gt;文件-&gt;打开Ubuntu镜像时只有EFI文件夹，可以先用系统自带的ISO打开方式加载镜像，然后UltraISO-&gt;文件-&gt;打开光盘-&gt;选择刚刚ISO挂载的盘符，接着写入硬盘映射)。</li>
+<li>选择U盘启动，选择安装方式的第三项自定义安装</li>
+<li>
+<p>系统初始配置</p>
+
+<ul>
+<li>
+<p>设置root密码</p>
+
+<div class="highlight highlight-sh"><pre>sudo passwd root</pre></div>
+</li>
+<li>
+<p>设置开机启动等待时间</p>
+
+<div class="highlight highlight-sh"><pre>sudo gedit /etc/default/grub   <span class="pl-s"><span class="pl-pds">"</span> 修改GRUB_TIMEOUT项</span>
+<span class="pl-s">sudo update-grub</span></pre></div>
+</li>
+<li>
+<p>设置系统更新源</p>
+
+<div class="highlight highlight-sh"><pre>sudo gedit /etc/apt/sources/list
+sudo apt-get update</pre></div>
+</li>
+</ul>
+</li>
+</ol>
+
+<h2>
+<a id="桌面环境搭建" class="anchor" href="#%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA" aria-hidden="true"><span class="octicon octicon-link"></span></a>桌面环境搭建</h2>
+
+<h3>
+<a id="terminator" class="anchor" href="#terminator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Terminator</h3>
+
+<ul>
+<li>
+<p>安装</p>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install terminator</pre></div>
+</li>
+<li>
+<p>配置</p>
+
+<ul>
+<li>终端配色</li>
+</ul>
+
+<div class="highlight highlight-sh"><pre>mkdir -p <span class="pl-k">~</span>/.config/terminator
+curl https://raw.github.com/ghuntley/terminator-solarized/master/config <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.config/terminator/config</pre></div>
+
+<ul>
+<li>ls配色</li>
+</ul>
+
+<div class="highlight highlight-sh"><pre>curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.dircolors
+vim <span class="pl-k">~</span>/.bashrc
+<span class="pl-c1">source</span> <span class="pl-k">~</span>/.bashrc</pre></div>
+</li>
+</ul>
+
+<h3>
+<a id="input-method" class="anchor" href="#input-method" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input Method</h3>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install ibus-sunpinyin</pre></div>
+
+<h3>
+<a id="google-chrome" class="anchor" href="#google-chrome" aria-hidden="true"><span class="octicon octicon-link"></span></a>Google Chrome</h3>
+
+<ul>
+<li>
+<p>方法1</p>
+
+<div class="highlight highlight-sh"><pre>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb  <span class="pl-s"><span class="pl-pds">"</span>获取软件包</span>
+<span class="pl-s">sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-pds">"</span></span>安装deb软件包
+sudo apt-get install -f  <span class="pl-s"><span class="pl-pds">"</span>递归安装所有上一指令缺少的依赖库</span>
+<span class="pl-s">sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-pds">"</span></span>解决依赖库问题后重装</pre></div>
+</li>
+<li><p>方法2</p></li>
+</ul>
+
+<h3>
+<a id="everpad" class="anchor" href="#everpad" aria-hidden="true"><span class="octicon octicon-link"></span></a>everpad</h3>
+
+<p>印象笔记</p>
+
+<ul>
+<li>
+<p>安装</p>
+
+<div class="highlight highlight-sh"><pre>sudo add-apt-repository ppa:nvbn-rm/ppa
+sudo apt-get update
+sudo apt-get install everpad</pre></div>
+</li>
+<li>
+<p>配置</p>
+
+<div class="highlight highlight-sh"><pre>sudo vim /usr/share/pyshared/everpad/const.py</pre></div>
+</li>
+</ul>
+
+<h3>
+<a id="vlc" class="anchor" href="#vlc" aria-hidden="true"><span class="octicon octicon-link"></span></a>VLC</h3>
+
+<p>Video Player</p>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install vlc</pre></div>
+
+<h3>
+<a id="stickynotes" class="anchor" href="#stickynotes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stickynotes</h3>
+
+<div class="highlight highlight-sh"><pre>sudo add-apt-repository ppa:umang/indicator-stickynotes
+sudo apt-get update
+sudo apt-get install indicator-stickynotes</pre></div>
+
+<h2>
+<a id="开发环境搭建" class="anchor" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发环境搭建</h2>
+
+<h3>
+<a id="vim" class="anchor" href="#vim" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vim</h3>
+
+<ul>
+<li>
+<p>安装</p>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install vim</pre></div>
+</li>
+<li><p>配置</p></li>
+</ul>
+
+<h3>
+<a id="java" class="anchor" href="#java" aria-hidden="true"><span class="octicon octicon-link"></span></a>Java</h3>
+
+<ul>
+<li>
+<p>安装</p>
+
+<div class="highlight highlight-sh"><pre>mkdir /usr/java
+<span class="pl-c1">cd</span> /usr/java
+sudo tar -xzvf <span class="pl-k">~</span>/Downloads/jdk-8u45-linux-x64.tar.gz</pre></div>
+</li>
+<li>
+<p>配置</p>
+
+<div class="highlight highlight-sh"><pre>sudo vim /etc/profile
+<span class="pl-c1">source</span> etc/profile</pre></div>
+</li>
+</ul>
+
+<h3>
+<a id="latex" class="anchor" href="#latex" aria-hidden="true"><span class="octicon octicon-link"></span></a>Latex</h3>
+
+<ul>
+<li>
+<p>准备工作(？不确定需不需要)</p>
+
+<ul>
+<li>
+<p>获取中文字体</p>
+
+<ul>
+<li>
+<p>从Windows复制</p>
+
+<div class="highlight highlight-sh"><pre>sudo mkdir /usr/share/fonts/win
+sudo cp /media/jeff/Windows8_OS/Windows/Fonts/{SIM,sim}<span class="pl-k">*</span> /usr/share/fonts/win/
+sudo chmod 755 /usr/share/fonts/win/<span class="pl-k">*</span></pre></div>
+</li>
+<li>
+<p>下载Microsoft开放字体</p>
+
+<pre><code></code></pre>
+</li>
+<li><p>获取Adobe字体</p></li>
+</ul>
+</li>
+<li>
+<p>更新系统字体缓存</p>
+
+<div class="highlight highlight-sh"><pre>sudo <span class="pl-c1">fc</span>-cache -f -s -v
+<span class="pl-c1">fc</span>-list :lang=zh  <span class="pl-s"><span class="pl-pds">"</span> 查看系统现有中文字体</span></pre></div>
+</li>
+</ul>
+</li>
+<li><p>安装</p></li>
+<li><p>用法</p></li>
+</ul>
+
+<h3>
+<a id="git" class="anchor" href="#git" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git</h3>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install git</pre></div>
+
+<h3>
+<a id="nodejs" class="anchor" href="#nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>NodeJS</h3>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install npm  或者 sudo apt-get install nodejs</pre></div>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
