@@ -61,26 +61,26 @@
 <p>系统初始配置</p>
 
 <ul>
-<li>
-<p>设置root密码</p>
+<li>设置root密码</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>sudo passwd root</pre></div>
-</li>
-<li>
-<p>设置开机启动等待时间</p>
+
+<ul>
+<li>设置开机启动等待时间</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>sudo gedit /etc/default/grub   <span class="pl-c"># 修改GRUB_TIMEOUT项</span>
 sudo update-grub</pre></div>
-</li>
-<li>
-<p>设置系统更新源(<a href="http://mirrors.tuna.tsinghua.edu.cn/" title="tsinghua">清华大学源</a>)</p>
+
+<ul>
+<li>设置系统更新源(<a href="http://mirrors.tuna.tsinghua.edu.cn/" title="tsinghua">清华大学源</a>)</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>sudo gedit /etc/apt/sources.list
 sudo apt-get update</pre></div>
 
 <p>系统sources.list文件已上传至<a href="https://github.com/chjhuang/blog" title="sources.list">Github</a>。</p>
-</li>
-</ul>
 </li>
 </ol>
 
@@ -91,11 +91,12 @@ sudo apt-get update</pre></div>
 <a id="terminator" class="anchor" href="#terminator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Terminator</h3>
 
 <ul>
-<li>
-<p>安装</p>
+<li>安装</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>sudo apt-get install terminator</pre></div>
-</li>
+
+<ul>
 <li>
 <p>配置</p>
 
@@ -125,15 +126,16 @@ vim <span class="pl-k">~</span>/.bashrc
 <a id="google-chrome" class="anchor" href="#google-chrome" aria-hidden="true"><span class="octicon octicon-link"></span></a>Google Chrome</h3>
 
 <ul>
-<li>
-<p>方法1</p>
+<li>方法1</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb  <span class="pl-c"># 获取软件包</span>
 sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-c"># 安装deb软件包</span>
-sudo apt-get install -f  <span class="pl-s"><span class="pl-pds">"</span>递归安装所有上一指令缺少的依赖库</span>
-<span class="pl-s">sudo dpkg -i google-chrome-stable_current_amd64.deb  # 解决依赖库问题后重装</span></pre></div>
-</li>
-<li><p>方法2</p></li>
+sudo apt-get install -f  <span class="pl-c"># 递归安装所有上一指令缺少的依赖库</span>
+sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-c"># 解决依赖库问题后重装</span></pre></div>
+
+<ul>
+<li>方法2</li>
 </ul>
 
 <h3>
@@ -142,19 +144,18 @@ sudo apt-get install -f  <span class="pl-s"><span class="pl-pds">"</span>递归�
 <p>印象笔记</p>
 
 <ul>
-<li>
-<p>安装</p>
+<li>安装</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>sudo add-apt-repository ppa:nvbn-rm/ppa
 sudo apt-get update
 sudo apt-get install everpad</pre></div>
-</li>
-<li>
-<p>配置</p>
+
+<ul>
+<li>配置</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>sudo vim /usr/share/pyshared/everpad/const.py</pre></div>
-</li>
-</ul>
 
 <h3>
 <a id="vlc" class="anchor" href="#vlc" aria-hidden="true"><span class="octicon octicon-link"></span></a>VLC</h3>
@@ -177,32 +178,32 @@ sudo apt-get install indicator-stickynotes</pre></div>
 <a id="vim" class="anchor" href="#vim" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vim</h3>
 
 <ul>
-<li>
-<p>安装</p>
+<li>安装</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>sudo apt-get install vim</pre></div>
-</li>
-<li><p>配置</p></li>
+
+<ul>
+<li>配置</li>
 </ul>
 
 <h3>
 <a id="java" class="anchor" href="#java" aria-hidden="true"><span class="octicon octicon-link"></span></a>Java</h3>
 
 <ul>
-<li>
-<p>安装</p>
+<li>安装</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>mkdir /usr/java
 <span class="pl-c1">cd</span> /usr/java
 sudo tar -xzvf <span class="pl-k">~</span>/Downloads/jdk-8u45-linux-x64.tar.gz</pre></div>
-</li>
-<li>
-<p>配置</p>
+
+<ul>
+<li>配置</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>sudo vim /etc/profile
 <span class="pl-c1">source</span> etc/profile</pre></div>
-</li>
-</ul>
 
 <h3>
 <a id="latex" class="anchor" href="#latex" aria-hidden="true"><span class="octicon octicon-link"></span></a>Latex</h3>
@@ -212,32 +213,26 @@ sudo tar -xzvf <span class="pl-k">~</span>/Downloads/jdk-8u45-linux-x64.tar.gz</
 <p>准备工作(？不确定需不需要)</p>
 
 <ul>
-<li>
-<p>获取中文字体</p>
-
-<ul>
-<li>
-<p>从Windows复制</p>
+<li>获取中文字体</li>
+<li>从Windows复制</li>
+</ul>
 
 <div class="highlight highlight-sh"><pre>sudo mkdir /usr/share/fonts/win
 sudo cp /media/jeff/Windows8_OS/Windows/Fonts/{SIM,sim}<span class="pl-k">*</span> /usr/share/fonts/win/
 sudo chmod 755 /usr/share/fonts/win/<span class="pl-k">*</span></pre></div>
-</li>
-<li>
-<p>下载Microsoft开放字体</p>
+
+<ul>
+<li>下载Microsoft开放字体</li>
+</ul>
 
 <pre><code></code></pre>
-</li>
-<li><p>获取Adobe字体</p></li>
+<ul>
+<li>获取Adobe字体</li>
+<li>更新系统字体缓存</li>
 </ul>
-</li>
-<li>
-<p>更新系统字体缓存</p>
 
 <div class="highlight highlight-sh"><pre>sudo <span class="pl-c1">fc</span>-cache -f -s -v
 <span class="pl-c1">fc</span>-list :lang=zh  <span class="pl-c"># 查看系统现有中文字体</span></pre></div>
-</li>
-</ul>
 </li>
 <li><p>安装</p></li>
 <li><p>用法</p></li>
@@ -254,32 +249,35 @@ sudo chmod 755 /usr/share/fonts/win/<span class="pl-k">*</span></pre></div>
 
 <ul>
 <li>
-<p><a href="https://help.github.com/articles/generating-ssh-keys/" title="generating ssh keys">配置</a></p>
+<p>账户<a href="https://help.github.com/articles/generating-ssh-keys/" title="generating ssh keys">设置</a></p>
 
 <ol>
-<li>
-<p>检查系统是否已有可用<em><code>SSH keys</code></em>：</p>
+<li>检查系统是否已有可用<em><code>SSH keys</code></em>：</li>
+</ol>
 
 <div class="highlight highlight-sh"><pre>ls -al <span class="pl-k">~</span>/.ssh  <span class="pl-c"># 列出现有SSH keys</span></pre></div>
-</li>
-<li>
-<p>如果有，直接跳到第三步，否则生成一个新的SSH keys：</p>
 
-<div class="highlight highlight-sh"><pre>ssh-keygen -t rsa -b 4096 -C <span class="pl-s"><span class="pl-pds">"</span>your_email@example.com<span class="pl-pds">"</span></span> 
-<span class="pl-c"># Creates a new ssh key, using the provided email as a label</span></pre></div>
+<ol>
+<li>如果有，直接跳到第三步，否则生成一个新的SSH keys：</li>
+</ol>
+
+<div class="highlight highlight-sh"><pre><span class="pl-c"># Creates a new ssh key, using the provided email as a label</span>
+ssh-keygen -t rsa -b 4096 -C <span class="pl-s"><span class="pl-pds">"</span>your_email@example.com<span class="pl-pds">"</span></span> </pre></div>
 
 <p>选择默认密钥对保存路径(即弹出"Enter file in which to save the key(default path):"时，按<em><code>Enter</code></em>继续)，并选择一个好的安全的<a href="https://help.github.com/articles/working-with-ssh-key-passphrases/" title="passphrase">passphrase</a>。</p>
-</li>
-<li>
-<p>将key加入ssh-agent：</p>
+
+<ol>
+<li>将key加入ssh-agent：</li>
+</ol>
 
 <pre><code># start the ssh-agent in the background
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa  # Add your SSH key to the ssh-agent
 </code></pre>
-</li>
-<li>
-<p>将key绑定到github账户：</p>
+
+<ol>
+<li>将key绑定到github账户：</li>
+</ol>
 
 <pre><code># Downloads and installs xclip.
 sudo apt-get install xclip
@@ -288,16 +286,15 @@ xclip -sel clip &lt; ~/.ssh/id_rsa.pub
 </code></pre>
 
 <p>然后将其粘贴到GitHub账户Settings-&gt;SSH key-&gt;Add SSH key。</p>
-</li>
-<li>
-<p>验证连接</p>
+
+<ol>
+<li>验证连接</li>
+</ol>
 
 <pre><code>ssh -T git@github.com  # Attempts to ssh to GitHub
 </code></pre>
 
 <p>Type <code>yes</code>，如果看到"Hi username! You've successfully authenticated, but GitHub does not provide shell access."，则说明连接成功。</p>
-</li>
-</ol>
 </li>
 </ul>
 
