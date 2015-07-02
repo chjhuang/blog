@@ -206,7 +206,7 @@ curl https://raw.githubusercontent.com/chjhuang/blog/master/2015/06/sources.list
 
 <ul>
 <li>
-<p>另外，为了方便操作Windows系统下的资源，可以在Ubuntu Home目录下建立对应资源的<code>软链接</code>：</p>
+另外，为了方便操作Windows系统下的资源，可以在Ubuntu Home目录下建立对应资源的<code>软链接</code>：
 
 <ul>
 <li>Windows/Desktop -&gt; Home/Desktop: </li>
@@ -294,7 +294,7 @@ sudo apt-get install google-chrome</pre></div>
 
 <ul>
 <li>
-<p>配置</p>
+配置
 
 <ul>
 <li>终端配色</li>
@@ -407,7 +407,7 @@ sudo apt-get install indicator-stickynotes</pre></div>
 
 <ul>
 <li>
-<p>配置</p>
+配置
 
 <p>Vim的配置主要是<code>插件安装</code>和<code>快捷键设置</code>。</p>
 
@@ -449,10 +449,10 @@ curl https://raw.githubusercontent.com/chjhuang/blog/master/2015/06/.vimrc \
     <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.vimrc</pre></div>
 
 <ol>
-<li><p>根据不同插件，检查并安装各自所需要的运行环境，如语法检查插件<code>synatic</code>需要<code>python-dev</code>环境，<code>vim-instant-markdown</code>需要<code>instant-markdown-d</code>的支持等。各插件说明和需要的前续操作在.vimrc处有说明。</p></li>
-<li><p>安装好插件的编译环境(有些插件需要)和运行环境后，打开<code>vim</code>，执行命令<code>:PlugInstall</code>进行插件安装。</p></li>
-<li><p>插件安装完成后，就可以愉快地Geek and Coding了。</p></li>
-<li><p>为了实现<code>一键</code>配置，后续可能会写一个Vim自动配置脚本文件。</p></li>
+<li>据不同插件，检查并安装各自所需要的运行环境，如语法检查插件<code>synatic</code>需要<code>python-dev</code>环境，<code>vim-instant-markdown</code>需要<code>instant-markdown-d</code>的支持等。各插件说明和需要的前续操作在.vimrc处有说明。</li>
+<li>安装好插件的编译环境(有些插件需要)和运行环境后，打开<code>vim</code>，执行命令<code>:PlugInstall</code>进行插件安装。</li>
+<li>插件安装完成后，就可以愉快地Geek and Coding了。</li>
+<li>为了实现<code>一键</code>配置，后续可能会写一个Vim自动配置脚本文件。</li>
 </ol>
 </li>
 </ul>
@@ -472,7 +472,7 @@ curl https://raw.githubusercontent.com/chjhuang/blog/master/2015/06/.vimrc \
 
 <ul>
 <li>
-<p><a href="https://help.github.com/articles/generating-ssh-keys/" title="generating ssh keys">配置</a></p>
+<a href="https://help.github.com/articles/generating-ssh-keys/" title="generating ssh keys">配置</a>
 
 <ol>
 <li>检查系统是否已有可用<em><code>SSH keys</code></em>：</li>
@@ -535,11 +535,11 @@ git config --global push.default simple  <span class="pl-c"># Git 2.0以上为si
 
 <ul>
 <li>
-<p>JDK</p>
+JDK
 
 <ul>
 <li>
-<p>方法一(推荐)</p>
+方法一(推荐)
 
 <div class="highlight highlight-sh"><pre><span class="pl-c"># 添加JDK deb源</span>
 sudo add-apt-repository <span class="pl-s"><span class="pl-pds">"</span>deb http://archive.canonical.com/ vivid partner<span class="pl-pds">"</span></span>
@@ -548,7 +548,7 @@ sudo apt-get install sun-java8-jdk sun-java8-jre sun-java8-plugin
 java -version  <span class="pl-c"># Check</span></pre></div>
 </li>
 <li>
-<p>方法二</p>
+方法二
 
 <ol>
 <li>与Windows下类似，首先到<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" title="JDK">Oracle</a>下载64位Linux下的JDK，然后解压</li>
@@ -580,13 +580,13 @@ sudo tar -xzvf <span class="pl-k">~</span>/Downloads/jdk-8u45-linux-x64.tar.gz</
 </ul>
 </li>
 <li>
-<p>IDE</p>
+IDE
 
 <p>虽然说Vim很强大，但Java作为具有很多很优秀IDE，且工程结构比较复杂的面向对象语言，还是要配个IDE这种好鞍的。既然业界风向标Google在开发其<code>Android Studio</code>时都抛弃<code>Eclipse</code>，转投<code>IntelliJ</code>了，那么我当然也要尝试一下这个所谓的<em>"The Most Intelligent Java IDE"</em>了。<a href="https://www.jetbrains.com/idea/" title="IntelliJ IDEA">IntelliJ IDEA</a>分为<code>Ultimate Edition</code>和<code>Community Edition</code>两个版本，穷到极致的我当然只能选择开源的社区版了，不过对于主要写Java项目的我来说足够了。其<a href="https://www.jetbrains.com/idea/help/basics-and-installation.html" title="Installation">安装</a>很简单：</p>
 
 <ol>
-<li><p><a href="https://www.jetbrains.com/idea/download/" title="Download">下载</a></p></li>
-<li><p>解压</p></li>
+<li><a href="https://www.jetbrains.com/idea/download/" title="Download">下载</a></li>
+<li>解压</li>
 </ol>
 
 <div class="highlight highlight-sh"><pre><span class="pl-c1">cd</span> /usr/java
@@ -600,8 +600,8 @@ sudo tar -xzvf <span class="pl-k">~</span>/Downloads/ideaIC-14.1.4.tar.gz</pre><
 sh idea.sh   <span class="pl-c"># 启动运行</span></pre></div>
 
 <ol>
-<li><p>配置，并创建桌面快捷方式: <code>Configure | Create Desktop Entry</code></p></li>
-<li><p>原有Eclipse工程转换及更多其他操作信息可参照IntelliJ IDEA的<a href="https://www.jetbrains.com/idea/help/eclipse.html" title="Eclipse">Help</a>文档。</p></li>
+<li>配置，并创建桌面快捷方式: <code>Configure | Create Desktop Entry</code></li>
+<li>原有Eclipse工程转换及更多其他操作信息可参照IntelliJ IDEA的<a href="https://www.jetbrains.com/idea/help/eclipse.html" title="Eclipse">Help</a>文档。</li>
 </ol>
 </li>
 </ul>
@@ -634,13 +634,13 @@ sudo apt-get install nodejs</pre></div>
 
 <ul>
 <li>
-<p>准备工作(可选)</p>
+准备工作(可选)
 
 <p>由于XeTex能够直接使用操作系统字体，所以这一步是可选的。不过Linux中的中文字体多数不太适合用于排版文档，所以建议复制Windows中的字体或Adobe的字体。</p>
 
 <ul>
 <li>
-<p>获取中文字体</p>
+获取中文字体
 
 <ul>
 <li>从Windows复制</li>
@@ -661,13 +661,13 @@ sudo chmod 755 /usr/share/fonts/win/<span class="pl-k">*</span></pre></div>
 <li>获取Adobe字体(？)</li>
 </ul>
 </li>
-<li><p>更新系统字体缓存</p></li>
+<li>更新系统字体缓存</li>
 </ul>
 
 <div class="highlight highlight-sh"><pre>sudo <span class="pl-c1">fc</span>-cache -f -s -v  <span class="pl-c"># 更新系统字体缓存</span>
 <span class="pl-c1">fc</span>-list :lang=zh  <span class="pl-c"># 查看系统现有中文字体</span></pre></div>
 </li>
-<li><p>安装</p></li>
+<li>安装</li>
 </ul>
 
 <div class="highlight highlight-sh"><pre><span class="pl-c"># 安装xetex和xelatex，可以直接通过install xelatex</span>
