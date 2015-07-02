@@ -29,13 +29,57 @@
     <div class="container">
       <section id="main_content">
         <h1>
-<a id="ubuntu桌面环境搭建小记" class="anchor" href="#ubuntu%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ubuntu桌面环境搭建小记</h1>
+<a id="ubuntu工作环境搭建小记" class="anchor" href="#ubuntu%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ubuntu工作环境搭建小记</h1>
 
 <p>作者 Jeff Chan(<a href="https://github.com/chjhuang" class="user-mention">@chjhuang</a>) | 发布于 2015-06-30</p>
+
+<h2>
+<a id="目录" class="anchor" href="#%E7%9B%AE%E5%BD%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>目录</h2>
+
+
+
+<ul>
+<li><a href="#system_install">系统安装</a></li>
+<li>
+<a href="#desktop_environment">桌面环境</a>
+
+<ul>
+<li><a href="#input_method">Input Method</a></li>
+<li><a href="#google_chrome">Google Chrome</a></li>
+<li><a href="#terminator">Terminator</a></li>
+<li><a href="#everpad">everpad</a></li>
+<li><a href="#vlc">VLC</a></li>
+<li><a href="#stickynotes">Stickynotes</a></li>
+</ul>
+</li>
+<li>
+<a href="#develop_environment">开发环境</a>
+
+<ul>
+<li><a href="#vim">Vim</a></li>
+<li><a href="#git">Git</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#python_c">Python &amp; C family</a></li>
+<li><a href="#nodejs">NodeJS</a></li>
+<li><a href="#latex">Latex</a></li>
+</ul>
+</li>
+<li>
+<a href="#terminal_tools">终端命令工具</a>
+
+<ul>
+<li><a href="#xclip">xclip</a></li>
+</ul>
+</li>
+</ul>
+
+
 
 <p>趁着夏季小学期课少，闲來无事终于决定要彻底将工作开发环境从Windows转到Linux下了。为了方便以后重装或者移植到新的PC，所以现在将这几天的折腾过程进行记录存档。</p>
 
 <p>之前断断续续玩过一段时间的CentOS，也玩过一会Ubuntu。虽然个人比较喜欢CentOS蓝黑的清爽风格，但是其软件管理、依赖解决等没有Ubuntu的好(比如安装Chrome，依赖库解决比较费事)，所以为了省事(不想折腾)，最终选择了Ubuntu发行版。</p>
+
+<p><a name="system_install"></a></p>
 
 <h2>
 <a id="系统安装" class="anchor" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>系统安装</h2>
@@ -80,15 +124,167 @@ sudo update-grub</pre></div>
 <div class="highlight highlight-sh"><pre>sudo gedit /etc/apt/sources.list
 sudo apt-get update</pre></div>
 
-<p>系统sources.list文件已上传至<a href="https://github.com/chjhuang/blog" title="sources.list">Github</a>。</p>
+<p>系统<a href="https://github.com/chjhuang/blog/blob/master/2015/06/sources.list" title="sources.list">sources.list</a>文件已上传至Github，可以备份本地文件后，从github上拉取：</p>
+
+<div class="highlight highlight-sh"><pre>mv /etc/apt/sources.list /etc/apt/sources.list.old
+curl https://raw.githubusercontent.com/chjhuang/blog/master/2015/06/sources.list \
+    <span class="pl-k">&gt;</span> /etc/apt/sources.list</pre></div>
+
+<p>另外，关于sources.list中的<em><code>vivid</code></em>，这是Ubuntu 15.04的版本代号(codename)。所以如果是其他版本的Ubuntu，则要将文件中所有的<code>vivid</code>替换成对应的版本代号，下表列出了部分Ubuntu版本号和代号(和Eclipse等软件类似，也是按照首字母的字典顺序来进行命名的)的对应关系：</p>
+
+<table>
+<thead>
+<tr>
+<th>版本号</th>
+<th>代号</th>
+<th>完整代号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8.04 LTS</td>
+<td>hardy</td>
+<td>Hardy Heron</td>
+</tr>
+<tr>
+<td>9.10</td>
+<td>karmic</td>
+<td>Karmic Koala</td>
+</tr>
+<tr>
+<td>10.04 LTS</td>
+<td>lucid</td>
+<td>Lucid Lynx</td>
+</tr>
+<tr>
+<td>10.10</td>
+<td>maverick</td>
+<td>Maverick Meerkat</td>
+</tr>
+<tr>
+<td>11.04</td>
+<td>natty</td>
+<td>Natty Narwhal</td>
+</tr>
+<tr>
+<td>11.10</td>
+<td>oneiric</td>
+<td>Oneiric Ocelot</td>
+</tr>
+<tr>
+<td>12.04 LTS</td>
+<td>precise</td>
+<td>Precise Pangolin</td>
+</tr>
+<tr>
+<td>12.10</td>
+<td>quantal</td>
+<td>Quantal Quetzal</td>
+</tr>
+<tr>
+<td>13.04</td>
+<td>raring</td>
+<td>Raring Ringtail</td>
+</tr>
+<tr>
+<td>14.04 LTS</td>
+<td>trusty</td>
+<td>Trusty Tahr</td>
+</tr>
+<tr>
+<td>14.10</td>
+<td>utopic</td>
+<td>Utopic Unicorn</td>
+</tr>
+<tr>
+<td>15.04</td>
+<td>vivid</td>
+<td>Vivid Vervet</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>
+<p>另外，为了方便操作Windows系统下的资源，可以在Ubuntu Home目录下建立对应资源的<code>软链接</code>：</p>
+
+<ul>
+<li>Windows/Desktop -&gt; Home/Desktop: </li>
+</ul>
+
+<div class="highlight highlight-sh"><pre>ln -s /media/jeff/Windows8_OS/Users/hwq/Desktop <span class="pl-k">~</span>/Desktop/W_Desktop</pre></div>
+
+<ul>
+<li>Windows/Pictures -&gt; Home/Pictures</li>
+</ul>
+
+<div class="highlight highlight-sh"><pre>ln -s /media/jeff/Windows8_OS/Users/hwq/Pictures <span class="pl-k">~</span>/Pictures/W_Pictures</pre></div>
+
+<ul>
+<li>Windows/Documents -&gt; Home/Documents</li>
+</ul>
+
+<div class="highlight highlight-sh"><pre>ln -s /media/jeff/Windows8_OS/Users/hwq/Documents <span class="pl-k">~</span>/Documents/W_Documents</pre></div>
+
+<ul>
+<li>Windows下其他常用文件夹 -&gt; Home中Documents或Desktop中</li>
+</ul>
+
+<p>这样，在终端输入<code>Desktop/W_Desktop</code>路径就可以操作Windows桌面了，省了一大段路径名。</p>
+</li>
+</ul>
 </li>
 </ol>
 
+<p><a name="desktop_environment"></a></p>
+
 <h2>
-<a id="桌面环境搭建" class="anchor" href="#%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA" aria-hidden="true"><span class="octicon octicon-link"></span></a>桌面环境搭建</h2>
+<a id="桌面环境" class="anchor" href="#%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83" aria-hidden="true"><span class="octicon octicon-link"></span></a>桌面环境</h2>
+
+<p><a name="input_method"></a></p>
+
+<h3>
+<a id="input-method" class="anchor" href="#input-method" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input Method</h3>
+
+<p>输入法沿用Ubuntu自带ibus输入法框架，并在其上安装<em><code>sunpinyin</code></em>中文输入法：</p>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install ibus-sunpinyin</pre></div>
+
+<p><a name="google_chrome"></a></p>
+
+<h3>
+<a id="google-chrome" class="anchor" href="#google-chrome" aria-hidden="true"><span class="octicon octicon-link"></span></a>Google Chrome</h3>
+
+<p>一直在用Google Chrome浏览器，所以为了同步，卸载掉了自带的Firefox浏览器。Ubuntu中Chrome浏览器的安装相对CentOS来说比较简单：</p>
+
+<ul>
+<li>方法1-直接下载</li>
+</ul>
+
+<div class="highlight highlight-sh"><pre><span class="pl-c"># 下载对应系统Google Chrome最新deb安装包</span>
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-c"># 安装deb软件包</span>
+sudo apt-get install -f  <span class="pl-c"># 安装缺少依赖库，递归安装上一指令缺少的所有依赖库</span>
+sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-c"># 解决依赖库问题后再次安装</span></pre></div>
+
+<ul>
+<li>方法2-添加Google Chrome的PPA</li>
+</ul>
+
+<div class="highlight highlight-sh"><pre>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub \
+    <span class="pl-k">|</span> sudo apt-key add
+sudo sh -c <span class="pl-s"><span class="pl-pds">'</span>echo "deb http://dl.google.com/linux/chrome/deb/ stable main" &gt;&gt; /etc/apt/sources.list.d/google-chrome.list<span class="pl-pds">'</span></span>
+sudo apt-get update
+sudo apt-get install google-chrome</pre></div>
+
+<p>附带提一下，关于CentOS系列Google Chrome的安装(<del>好像是Google developers觉得CentOS的Linux构建系统太老而取消了支持</del>)，国外某大神写了个<code>一键</code>安装脚本<a href="http://chrome.richardlloyd.org.uk/" title="Google Installer">install_chrome.sh</a>，亲测有效。</p>
+
+<p><a name="terminator"></a></p>
 
 <h3>
 <a id="terminator" class="anchor" href="#terminator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Terminator</h3>
+
+<p>Ubuntu自带的终端是gnome-terminal，但不支持分屏，复制粘贴支持也不爽，所以卸载掉了terminal，换用terminator。</p>
 
 <ul>
 <li>安装</li>
@@ -104,44 +300,51 @@ sudo apt-get update</pre></div>
 <li>终端配色</li>
 </ul>
 
+<p>配色使用<a href="http://ethanschoonover.com/solarized" title="Solarized">Solarized</a>系列，配置该系列对应terminator终端的配色方案<a href="https://github.com/ghuntley/terminator-solarized" title="terminator solarized">terminator-solarized</a>操作如下：</p>
+
 <div class="highlight highlight-sh"><pre>mkdir -p <span class="pl-k">~</span>/.config/terminator
-curl https://raw.github.com/ghuntley/terminator-solarized/master/config <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.config/terminator/config</pre></div>
+curl https://raw.githubusercontent.com/ghuntley/terminator-solarized/master/config \
+    <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.config/terminator/config</pre></div>
 
 <ul>
 <li>ls配色</li>
 </ul>
 
-<div class="highlight highlight-sh"><pre>curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.dircolors
-vim <span class="pl-k">~</span>/.bashrc
-<span class="pl-c1">source</span> <span class="pl-k">~</span>/.bashrc</pre></div>
+<p>使用solarized配色后，你会发现用ls命令查看目录和文件时是一片灰色。这是因为默认情况下solarized各种bright方案基本都是灰色，而系统默认显示目录和文件时多用bright色，此时需要配置dircolors才能显示出彩色的文件和目录。</p>
+
+<p><a href="https://github.com/seebi/dircolors-solarized" title="dircolors solarized">dircolors-solarized</a>项目提供了适合于solarized的dircolors配色方案，只要选择合适的方案使用就可以了。我参照<a href="http://blog.codinglabs.org/articles/getting-started-with-ubuntu.html">http://blog.codinglabs.org/articles/getting-started-with-ubuntu.html</a>中的做法，选择了适合这个配色的dircolors.ansi-dark：</p>
+
+<div class="highlight highlight-sh"><pre>curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark \
+    <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.dircolors</pre></div>
+
+<p>然后在<em><code>~/.bashrc</code></em>中作如下配置(Ubuntu好像默认有该配置)：</p>
+
+<div class="highlight highlight-bash"><pre><span class="pl-c"># enable color support of ls and also add handy aliases</span>
+<span class="pl-k">if</span> [ -x /usr/bin/dircolors ]<span class="pl-k">;</span> <span class="pl-k">then</span>
+    <span class="pl-c1">test</span> -r <span class="pl-k">~</span>/.dircolors <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">eval</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>dircolors -b <span class="pl-k">~</span>/.dircolors<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span> <span class="pl-k">||</span> <span class="pl-c1">eval</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>dircolors -b<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
+    <span class="pl-c1">alias</span> ls=<span class="pl-s"><span class="pl-pds">'</span>ls --color=auto<span class="pl-pds">'</span></span>
+    <span class="pl-c">#alias dir='dir --color=auto'</span>
+    <span class="pl-c">#alias vdir='vdir --color=auto'</span>
+
+    <span class="pl-c1">alias</span> grep=<span class="pl-s"><span class="pl-pds">'</span>grep --color=auto<span class="pl-pds">'</span></span>
+    <span class="pl-c1">alias</span> fgrep=<span class="pl-s"><span class="pl-pds">'</span>fgrep --color=auto<span class="pl-pds">'</span></span>
+    <span class="pl-c1">alias</span> egrep=<span class="pl-s"><span class="pl-pds">'</span>egrep --color=auto<span class="pl-pds">'</span></span>
+<span class="pl-k">fi</span></pre></div>
+
+<ul>
+<li>其他配置</li>
+</ul>
+
+<p>对terminator诸如快捷键绑定等其他更多配置既可以在终端图形界面右键-&gt;preferences，也可以通过修改<em><code>~/.config/terminator/config</code></em>文件来进行设置。关于terminatro的详细配置选项可以参考<a href="http://manpages.ubuntu.com/manpages/vivid/man5/terminator_config.5.html" title="manpage">terminator manpage</a>。</p>
 </li>
 </ul>
 
-<h3>
-<a id="input-method" class="anchor" href="#input-method" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input Method</h3>
-
-<div class="highlight highlight-sh"><pre>sudo apt-get install ibus-sunpinyin</pre></div>
-
-<h3>
-<a id="google-chrome" class="anchor" href="#google-chrome" aria-hidden="true"><span class="octicon octicon-link"></span></a>Google Chrome</h3>
-
-<ul>
-<li>方法1</li>
-</ul>
-
-<div class="highlight highlight-sh"><pre>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb  <span class="pl-c"># 获取软件包</span>
-sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-c"># 安装deb软件包</span>
-sudo apt-get install -f  <span class="pl-c"># 递归安装所有上一指令缺少的依赖库</span>
-sudo dpkg -i google-chrome-stable_current_amd64.deb  <span class="pl-c"># 解决依赖库问题后重装</span></pre></div>
-
-<ul>
-<li>方法2</li>
-</ul>
+<p><a name="everpad"></a></p>
 
 <h3>
 <a id="everpad" class="anchor" href="#everpad" aria-hidden="true"><span class="octicon octicon-link"></span></a>everpad</h3>
 
-<p>印象笔记</p>
+<p>印象笔记现在没有Linux客户端，所以安装了一个第三方开源客户端<a href="https://github.com/nvbn/everpad" title="everpad">everpad</a>：</p>
 
 <ul>
 <li>安装</li>
@@ -155,27 +358,46 @@ sudo apt-get install everpad</pre></div>
 <li>配置</li>
 </ul>
 
-<div class="highlight highlight-sh"><pre>sudo vim /usr/share/pyshared/everpad/const.py</pre></div>
+<p>由于该客户端默认的授权链接是国际版Evernote，所以为了支持Evernote的中国版也就是印象笔记的授权，需要将其配置文件<em><code>/usr/share/pyshared/everpad/const.py</code></em>中的</p>
+
+<div class="highlight highlight-py"><pre>HOST <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>www.evernote.com<span class="pl-pds">'</span></span> 修改为
+HOST <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>app.yinxiang.com<span class="pl-pds">'</span></span></pre></div>
+
+<p>运行即可跳转到授权页面完成授权，然后就可以愉快地进行笔记同步了(<del>不过界面有点丑</del>)。</p>
+
+<p><a name="vlc"></a></p>
 
 <h3>
 <a id="vlc" class="anchor" href="#vlc" aria-hidden="true"><span class="octicon octicon-link"></span></a>VLC</h3>
 
-<p>Video Player</p>
+<p>又一个很喜欢的软件<em><code>potPlayer</code></em>没有Linux版客户端(<del>摔</del>)，系统自带的视频播放器又很难用，所以选择了一个据说很强大的播放软件(几乎通吃所有格式的音视频)：</p>
 
 <div class="highlight highlight-sh"><pre>sudo apt-get install vlc</pre></div>
 
+<p><a name="stickynotes"></a></p>
+
 <h3>
 <a id="stickynotes" class="anchor" href="#stickynotes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stickynotes</h3>
+
+<p>不管是作日程安排，还是作碎片记忆，还是做各种Command、Shortcuts的(<del>都Linux了，当然要追求纯键盘工作</del>)Cheat Sheet，都离不开一个好的便利贴软件。对于这种小软件，我的要求是<code>简洁有效</code>，所以选择了<a href="https://launchpad.net/indicator-stickynotes" title="indicator stickynotes">Stickynotes</a>：</p>
 
 <div class="highlight highlight-sh"><pre>sudo add-apt-repository ppa:umang/indicator-stickynotes
 sudo apt-get update
 sudo apt-get install indicator-stickynotes</pre></div>
 
+<p>不过，这软件还是不完美，我只是想要一个可以触发便签<code>隐藏/显现</code>的快捷键。</p>
+
+<p><a name="develop_environment"></a></p>
+
 <h2>
-<a id="开发环境搭建" class="anchor" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发环境搭建</h2>
+<a id="开发环境" class="anchor" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发环境</h2>
+
+<p><a name="vim"></a></p>
 
 <h3>
 <a id="vim" class="anchor" href="#vim" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vim</h3>
+
+<p>说好了要geek到纯键盘操作，那么Vim作为常用的高效文本(<del>zhuang</del>)编辑(<del>bi</del>)利器，自然值得好好配置一番。</p>
 
 <ul>
 <li>安装</li>
@@ -184,62 +406,63 @@ sudo apt-get install indicator-stickynotes</pre></div>
 <div class="highlight highlight-sh"><pre>sudo apt-get install vim</pre></div>
 
 <ul>
-<li>配置</li>
-</ul>
-
-<h3>
-<a id="java" class="anchor" href="#java" aria-hidden="true"><span class="octicon octicon-link"></span></a>Java</h3>
-
-<ul>
-<li>安装</li>
-</ul>
-
-<div class="highlight highlight-sh"><pre>mkdir /usr/java
-<span class="pl-c1">cd</span> /usr/java
-sudo tar -xzvf <span class="pl-k">~</span>/Downloads/jdk-8u45-linux-x64.tar.gz</pre></div>
-
-<ul>
-<li>配置</li>
-</ul>
-
-<div class="highlight highlight-sh"><pre>sudo vim /etc/profile
-<span class="pl-c1">source</span> etc/profile</pre></div>
-
-<h3>
-<a id="latex" class="anchor" href="#latex" aria-hidden="true"><span class="octicon octicon-link"></span></a>Latex</h3>
-
-<ul>
 <li>
-<p>准备工作(？不确定需不需要)</p>
+<p>配置</p>
 
-<ul>
-<li>获取中文字体</li>
-<li>从Windows复制</li>
-</ul>
+<p>Vim的配置主要是<code>插件安装</code>和<code>快捷键设置</code>。</p>
 
-<div class="highlight highlight-sh"><pre>sudo mkdir /usr/share/fonts/win
-sudo cp /media/jeff/Windows8_OS/Windows/Fonts/{SIM,sim}<span class="pl-k">*</span> /usr/share/fonts/win/
-sudo chmod 755 /usr/share/fonts/win/<span class="pl-k">*</span></pre></div>
+<ol>
+<li>为了更好地进行插件管理，首先安装插件管理工具<a href="https://github.com/junegunn/vim-plug" title="Plugin Manager">vim-plug</a>: </li>
+</ol>
 
-<ul>
-<li>下载Microsoft开放字体</li>
-</ul>
+<div class="highlight highlight-sh"><pre><span class="pl-c"># Install Vim plugin manager to ~/.vim</span>
+curl -fLo <span class="pl-k">~</span>/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</pre></div>
 
-<pre><code></code></pre>
-<ul>
-<li>获取Adobe字体</li>
-<li>更新系统字体缓存</li>
-</ul>
+<ol>
+<li>然后编辑Vim的配置文件<code>~/.vimrc</code>，选择自己需要的插件，进行插件参数和启动快捷键等设置以及进行一些Vim的其他通用设置：</li>
+</ol>
 
-<div class="highlight highlight-sh"><pre>sudo <span class="pl-c1">fc</span>-cache -f -s -v
-<span class="pl-c1">fc</span>-list :lang=zh  <span class="pl-c"># 查看系统现有中文字体</span></pre></div>
+<div class="highlight highlight-vim"><pre><span class="pl-c">" The simple usage example of vim-plug</span>
+call <span class="pl-c1">plug#begin</span>(<span class="pl-s">'~/.vim/plugged'</span>)
+
+<span class="pl-c">" On-demand loading</span>
+Plug <span class="pl-s">'scrooloose/nerdtree'</span>, { <span class="pl-s">'on'</span>:  <span class="pl-s">'NERDTreeToggle'</span> }
+
+<span class="pl-c">" Using git URL</span>
+Plug <span class="pl-s">'https://github.com/junegunn/vim-github-dashboard.git'</span>
+
+<span class="pl-c">" Unmanaged plugin (manually installed and updated)</span>
+Plug <span class="pl-s">'~/my-prototype-plugin'</span>
+
+<span class="pl-c">" Install other plugin ...</span>
+
+call <span class="pl-c1">plug#end</span>()
+
+<span class="pl-c">" Plugin Settings and General Settings</span>
+<span class="pl-c">" ...</span></pre></div>
+
+<p>为了方便，我已经将现在的<a href="https://github.com/chjhuang/blog/blob/master/2015/06/.vimrc" title=".vimrc">.vimrc</a>上传到了Github。可以备份本地.vimrc后从github中直接拉取之前的配置文件：</p>
+
+<div class="highlight highlight-sh"><pre>mv <span class="pl-k">~</span>/.vimrc <span class="pl-k">~</span>/.vimrc.old  <span class="pl-c"># backup(it's depend)</span>
+curl https://raw.githubusercontent.com/chjhuang/blog/master/2015/06/.vimrc \
+    <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.vimrc</pre></div>
+
+<ol>
+<li><p>根据不同插件，检查并安装各自所需要的运行环境，如语法检查插件<code>synatic</code>需要<code>python-dev</code>环境，<code>vim-instant-markdown</code>需要<code>instant-markdown-d</code>的支持等。各插件说明和需要的前续操作在.vimrc处有说明。</p></li>
+<li><p>安装好插件的编译环境(有些插件需要)和运行环境后，打开<code>vim</code>，执行命令<code>:PlugInstall</code>进行插件安装。</p></li>
+<li><p>插件安装完成后，就可以愉快地Geek and Coding了。</p></li>
+<li><p>为了实现<code>一键</code>配置，后续可能会写一个Vim自动配置脚本文件。</p></li>
+</ol>
 </li>
-<li><p>安装</p></li>
-<li><p>用法</p></li>
 </ul>
+
+<p><a name="git"></a></p>
 
 <h3>
 <a id="git" class="anchor" href="#git" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git</h3>
+
+<p>Git这么强大工具再加上Github这个全球最大<del>同性交友</del>网站，不仅可以做代码管理，还可以与各路大神神交、进行资料收集、做笔记、备份文件、写Blog等，值得认真泡泡。</p>
 
 <ul>
 <li>安装</li>
@@ -270,20 +493,18 @@ ssh-keygen -t rsa -b 4096 -C <span class="pl-s"><span class="pl-pds">"</span>you
 <li>将key加入ssh-agent：</li>
 </ol>
 
-<pre><code># start the ssh-agent in the background
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa  # Add your SSH key to the ssh-agent
-</code></pre>
+<div class="highlight highlight-sh"><pre><span class="pl-c"># start the ssh-agent in the background</span>
+<span class="pl-c1">eval</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>ssh-agent -s<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span>
+ssh-add <span class="pl-k">~</span>/.ssh/id_rsa  <span class="pl-c"># Add your SSH key to the ssh-agent</span></pre></div>
 
 <ol>
-<li>将key绑定到github账户：</li>
+<li>将公钥发布到github：</li>
 </ol>
 
-<pre><code># Downloads and installs xclip.
+<div class="highlight highlight-sh"><pre><span class="pl-c"># Downloads and installs xclip.</span>
 sudo apt-get install xclip
-# Copies the contents of the id_rsa.pub file to your clipboard&gt;
-xclip -sel clip &lt; ~/.ssh/id_rsa.pub
-</code></pre>
+<span class="pl-c"># Copies the contents of the id_rsa.pub file to your clipboard&gt;</span>
+xclip -sel clip <span class="pl-k">&lt;</span> <span class="pl-k">~</span>/.ssh/id_rsa.pub</pre></div>
 
 <p>然后将其粘贴到GitHub账户Settings-&gt;SSH key-&gt;Add SSH key。</p>
 
@@ -291,17 +512,240 @@ xclip -sel clip &lt; ~/.ssh/id_rsa.pub
 <li>验证连接</li>
 </ol>
 
-<pre><code>ssh -T git@github.com  # Attempts to ssh to GitHub
-</code></pre>
+<div class="highlight highlight-sh"><pre>ssh -T git@github.com  <span class="pl-c"># Attempts to ssh to GitHub</span></pre></div>
 
 <p>Type <code>yes</code>，如果看到"Hi username! You've successfully authenticated, but GitHub does not provide shell access."，则说明连接成功。</p>
+
+<ol>
+<li>设置全局用户账户</li>
+</ol>
+
+<div class="highlight highlight-sh"><pre>git config --global user.email <span class="pl-s"><span class="pl-pds">"</span>your_email@example.com<span class="pl-pds">"</span></span>
+git config --global user.name <span class="pl-s"><span class="pl-pds">"</span>your name<span class="pl-pds">"</span></span>
+git config --global push.default simple  <span class="pl-c"># Git 2.0以上为simple, 2.0以下为matching</span></pre></div>
 </li>
 </ul>
+
+<p><a name="java"></a></p>
+
+<h3>
+<a id="java" class="anchor" href="#java" aria-hidden="true"><span class="octicon octicon-link"></span></a>Java</h3>
+
+<p>现在用的主要开发语言是Java，所以需要配置Java开发运行环境。</p>
+
+<ul>
+<li>
+<p>JDK</p>
+
+<ul>
+<li>
+<p>方法一(推荐)</p>
+
+<div class="highlight highlight-sh"><pre><span class="pl-c"># 添加JDK deb源</span>
+sudo add-apt-repository <span class="pl-s"><span class="pl-pds">"</span>deb http://archive.canonical.com/ vivid partner<span class="pl-pds">"</span></span>
+sudo apt-get update
+sudo apt-get install sun-java8-jdk sun-java8-jre sun-java8-plugin
+java -version  <span class="pl-c"># Check</span></pre></div>
+</li>
+<li>
+<p>方法二</p>
+
+<ol>
+<li>与Windows下类似，首先到<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" title="JDK">Oracle</a>下载64位Linux下的JDK，然后解压</li>
+</ol>
+
+<div class="highlight highlight-sh"><pre>mkdir /usr/java  <span class="pl-c"># 本地安装一般安装在/usr/local目录下</span>
+<span class="pl-c1">cd</span> /usr/java
+sudo tar -xzvf <span class="pl-k">~</span>/Downloads/jdk-8u45-linux-x64.tar.gz</pre></div>
+
+<ol>
+<li>接着进行环境变量配置：</li>
+</ol>
+
+<div class="highlight highlight-sh"><pre>sudo vim /etc/profile</pre></div>
+
+<p>在最后加入：</p>
+
+<div class="highlight highlight-bash"><pre><span class="pl-c"># JDK Environment Variables</span>
+<span class="pl-k">export</span> JAVA_HOME=/usr/java/jdk1.8.0_45
+<span class="pl-k">export</span> CLASSPATH=<span class="pl-smi">$CLASSPATH</span>:.:<span class="pl-smi">$JAVA_HOME</span>/lib:<span class="pl-smi">$JAVA_HOME</span>/jre/lib
+<span class="pl-k">export</span> PATH=<span class="pl-smi">$PATH</span>:<span class="pl-smi">$JAVA_HOME</span>/bin </pre></div>
+
+<ol>
+<li>重新加载系统环境变量：</li>
+</ol>
+
+<div class="highlight highlight-sh"><pre><span class="pl-c1">source</span> /etc/profile</pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>IDE</p>
+
+<p>虽然说Vim很强大，但Java作为具有很多很优秀IDE，且工程结构比较复杂的面向对象语言，还是要配个IDE这种好鞍的。既然业界风向标Google在开发其<code>Android Studio</code>时都抛弃<code>Eclipse</code>，转投<code>IntelliJ</code>了，那么我当然也要尝试一下这个所谓的<em>"The Most Intelligent Java IDE"</em>了。<a href="https://www.jetbrains.com/idea/" title="IntelliJ IDEA">IntelliJ IDEA</a>分为<code>Ultimate Edition</code>和<code>Community Edition</code>两个版本，穷到极致的我当然只能选择开源的社区版了，不过对于主要写Java项目的我来说足够了。其<a href="https://www.jetbrains.com/idea/help/basics-and-installation.html" title="Installation">安装</a>很简单：</p>
+
+<ol>
+<li><p><a href="https://www.jetbrains.com/idea/download/" title="Download">下载</a></p></li>
+<li><p>解压</p></li>
+</ol>
+
+<div class="highlight highlight-sh"><pre><span class="pl-c1">cd</span> /usr/java
+sudo tar -xzvf <span class="pl-k">~</span>/Downloads/ideaIC-14.1.4.tar.gz</pre></div>
+
+<ol>
+<li>启动运行</li>
+</ol>
+
+<div class="highlight highlight-sh"><pre><span class="pl-c1">cd</span> /usr/java/idea-IC-141.1532.4/bin  <span class="pl-c"># 切换到bin目录</span>
+sh idea.sh   <span class="pl-c"># 启动运行</span></pre></div>
+
+<ol>
+<li><p>配置，并创建桌面快捷方式: <code>Configure | Create Desktop Entry</code></p></li>
+<li><p>原有Eclipse工程转换及更多其他操作信息可参照IntelliJ IDEA的<a href="https://www.jetbrains.com/idea/help/eclipse.html" title="Eclipse">Help</a>文档。</p></li>
+</ol>
+</li>
+</ul>
+
+<p><a name="python_c"></a></p>
+
+<h3>
+<a id="python--c-family" class="anchor" href="#python--c-family" aria-hidden="true"><span class="octicon octicon-link"></span></a>Python &amp; C family</h3>
+
+<p>Ubuntu系统自带<code>Python 2.7</code>、<code>Python 3.4</code>、<code>gcc 4.9</code>等编译运行环境。而且现在也没有用这些语言进行大项目开发，所以用Vim(具有语法检查并能够自补全)编辑，然后在终端编译运行就足够了。</p>
+
+<p><a name="nodejs"></a></p>
 
 <h3>
 <a id="nodejs" class="anchor" href="#nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>NodeJS</h3>
 
-<div class="highlight highlight-sh"><pre>sudo apt-get install npm  <span class="pl-c"># 或者 sudo apt-get install nodejs</span></pre></div>
+<p>NodeJs是Javascrpit的Server端运行版，Vim的某些插件用得到，其安装如下: </p>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install npm  <span class="pl-c"># 或者</span>
+sudo apt-get install nodejs</pre></div>
+
+<p><a name="latex"></a></p>
+
+<h3>
+<a id="latex" class="anchor" href="#latex" aria-hidden="true"><span class="octicon octicon-link"></span></a>Latex</h3>
+
+<p>既然决定要<code>Geek</code>，那么就要Geek到底。抛弃<code>Word</code>，选择<code>Latex</code>；用<code>HTML5 + JS</code>代替<code>Power Point</code>；<code>Excel</code>？这是什么鬼。还是想用<code>Office</code>，没事，Ubuntu系统自带<code>LibreOffice</code>。</p>
+
+<p>进入正题，为了可以支持中文文档的编辑，选择使用基于<code>Unicode</code>的<code>TeX</code>排版系统<a href="http://scripts.sil.org/xetex" title="XeTeX">XeTex</a>。其是由Jonathan Kew开发并使用Unicode编码，因而支持多种语言并能够直接访问操作系统字体。XeTex环境配置如下：</p>
+
+<ul>
+<li>
+<p>准备工作(可选)</p>
+
+<p>由于XeTex能够直接使用操作系统字体，所以这一步是可选的。不过Linux中的中文字体多数不太适合用于排版文档，所以建议复制Windows中的字体或Adobe的字体。</p>
+
+<ul>
+<li>
+<p>获取中文字体</p>
+
+<ul>
+<li>从Windows复制</li>
+</ul>
+
+<div class="highlight highlight-sh"><pre>sudo mkdir /usr/share/fonts/win
+sudo cp /media/jeff/Windows8_OS/Windows/Fonts/{SIM,sim}<span class="pl-k">*</span> \
+    /usr/share/fonts/win/
+sudo chmod 755 /usr/share/fonts/win/<span class="pl-k">*</span></pre></div>
+
+<ul>
+<li>安装<code>Microsoft</code>的公开免费字体</li>
+</ul>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install xfonts-wqy ttf-wqy-microhei ttf-wqy-zenhei</pre></div>
+
+<ul>
+<li>获取Adobe字体(？)</li>
+</ul>
+</li>
+<li><p>更新系统字体缓存</p></li>
+</ul>
+
+<div class="highlight highlight-sh"><pre>sudo <span class="pl-c1">fc</span>-cache -f -s -v  <span class="pl-c"># 更新系统字体缓存</span>
+<span class="pl-c1">fc</span>-list :lang=zh  <span class="pl-c"># 查看系统现有中文字体</span></pre></div>
+</li>
+<li><p>安装</p></li>
+</ul>
+
+<div class="highlight highlight-sh"><pre><span class="pl-c"># 安装xetex和xelatex，可以直接通过install xelatex</span>
+<span class="pl-c"># 来实现，Ubuntu会自动安装xelatex依赖的xetex库。</span>
+<span class="pl-c"># xelatex是xetex的命令，能够直接编译生成pdf</span>
+sudo apt-get install texlive-xelatex
+
+<span class="pl-c"># 安装中文支持CJK</span>
+sudo apt-get install latex-cjk-chinese
+
+<span class="pl-c"># 安装Latex的science包，以后编译遇到包找不到的情况，</span>
+<span class="pl-c"># 都可以通过Google，找到对应的安装包名，进行后续安装</span>
+sudo apt-get install texlive-science</pre></div>
+
+<ul>
+<li>用法示例(使用xeCJK排版中文)</li>
+</ul>
+
+<p>根据Latex语法，用Vim编辑<code>example.tex</code>文件(<code>UTF-8</code>):</p>
+
+<div class="highlight highlight-tex"><pre><span class="pl-c1">\documentclass</span>[11pt]{article}
+<span class="pl-c">% 使用xeCJK排版中文</span>
+<span class="pl-c1">\usepackage</span>[BoldFont,SlantFont,CJKchecksingle]{xeCJK}
+<span class="pl-c1">\setCJKmainfont</span>[BoldFont=SimHei]{SimSun}  <span class="pl-c">% 设置缺省中文字体</span>
+<span class="pl-c1">\setCJKmonofont</span>{SimSun}
+<span class="pl-c1">\parindent</span> 2em   <span class="pl-c">%段首缩进</span>
+
+<span class="pl-c1">\begin</span>{document}
+<span class="pl-c1">\section</span>{举例}
+<span class="pl-c1">\begin</span>{verbatim}
+标点。
+<span class="pl-c1">\end</span>{verbatim}
+
+汉字Chinese数学<span class="pl-s"><span class="pl-pds">$</span>x=y<span class="pl-pds">$</span></span>空格
+<span class="pl-c1">\end</span>{document}</pre></div>
+
+<p>完成之后，在终端输入：</p>
+
+<div class="highlight highlight-sh"><pre>xelatex example.tex</pre></div>
+
+<p>即可编译生成对应的<code>pdf</code>文件。</p>
+
+<p><a name="terminal_tools"></a></p>
+
+<h2>
+<a id="终端命令工具" class="anchor" href="#%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E5%B7%A5%E5%85%B7" aria-hidden="true"><span class="octicon octicon-link"></span></a>终端命令工具</h2>
+
+<p><a name="xclip"></a></p>
+
+<h3>
+<a id="xclip" class="anchor" href="#xclip" aria-hidden="true"><span class="octicon octicon-link"></span></a>xclip</h3>
+
+<p>xclip命令建立了终端和剪切板之间的通道，可以将终端输出或文件内容保存到剪切板，也可以将剪切板的内容输出到终端或文件。Ubuntu需要自己安装：</p>
+
+<div class="highlight highlight-sh"><pre>sudo apt-get install xclip</pre></div>
+
+<p>常用命令包括：</p>
+
+<div class="highlight highlight-sh"><pre>xclip filename  <span class="pl-c"># 将指定文件输出到剪贴板</span>
+ls -al <span class="pl-k">|</span> xclip  <span class="pl-c"># 将终端输出保存到剪贴板</span>
+xclip -o  <span class="pl-c"># 剪切板内容输出到终端</span>
+xclip -o <span class="pl-k">&gt;</span> filename  <span class="pl-c"># 剪切板内容输出到文件</span></pre></div>
+
+<p>不过这里需要<code>注意</code>，在X11(Linux系列的GUI视窗系统)系统中有多个<a href="http://www.debian-administration.org/article/565/Using_the_X_clipboard_from_the_command_line" title="xclip">clipboards</a>，其中最主要的两个是：</p>
+
+<ul>
+<li>
+<code>PRIMARY</code> —— Normally copied to implicitly with mouse selection, and pasted with a middle mouse click.</li>
+<li>
+<code>CLIPBOARD</code> —— Normally used explicitly from applications, such as with C-c, C-x, and C-v.</li>
+</ul>
+
+<p>xclip默认选择的是<code>X PRIMARY</code>，所以，如果想用<code>X CLIPBOARD</code>的话，需要用</p>
+
+<div class="highlight highlight-sh"><pre>xclip -selection c  <span class="pl-c"># 输出到c</span>
+xclip -o -selection c <span class="pl-c"># 从c输出</span></pre></div>
+
+<p><em>(未完待续......)</em></p>
       </section>
     </div>
 
