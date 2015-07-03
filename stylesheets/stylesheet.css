@@ -2,8 +2,8 @@ body {
   margin: 0;
   padding: 0;
   background: #151515 url("../images/bkg.png") 0 0;
-  color: #eaeaea;
-  font: 16px;
+  color: #f0e7d5;
+  font-size: 15px;
   line-height: 1.5;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 }
@@ -12,7 +12,7 @@ body {
 
 .container {
   width: 90%;
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
 }
 
@@ -25,9 +25,11 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 20px;
 }
 
+/*
 li {
   line-height: 1.4 ;
 }
+*/
 
 /* Header, <header>
    header   - container
@@ -46,7 +48,7 @@ header {
 header h1 {
   font-size: 30px;
   line-height: 1.5;
-  margin: 0 0 0 -40px;
+  margin: 0 0 0 -10px;
   font-weight: bold;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   color: #b5e853;
@@ -90,9 +92,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   color: #b5e853;
   letter-spacing: -0.03em;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
-               0 0 5px rgba(181, 232, 83, 0.1),
-               0 0 10px rgba(181, 232, 83, 0.1);
+}
+
+#author_time {
+    margin: -20px 0 20px 10px;
+    font-size: 12px;
 }
 
 #main_content h1 {
@@ -105,6 +109,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #main_content h3 {
   font-size: 18px;
+  color: #CC8800;
 }
 
 #main_content h4 {
@@ -129,6 +134,7 @@ dt {
   font-weight: bold;
 }
 
+/*
 ul li {
   list-style: none;
 }
@@ -142,6 +148,29 @@ ul li:before {
   margin-right: 21px;
   line-height: 16px;
 }
+*/
+
+ul {
+    list-style-image: url("../images/bullet.png");
+    padding: 0 0 0 23px;
+}
+
+ol {
+    padding-left: 35px;
+}
+
+code {
+    font-family: "Lucida Sans", Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
+    color: #efefef;
+    font-size: 14px;
+    padding: 4px 6px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border-radius: 2px;
+}
 
 blockquote {
   color: #aaa;
@@ -150,11 +179,11 @@ blockquote {
 }
 
 pre {
-  background: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #090909;
+  border: 1px solid #040404;
   padding: 10px;
   font-size: 14px;
-  color: #b5e853;
+  color: #96A97E;
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -166,16 +195,20 @@ pre {
 table {
   width: 100%;
   margin: 0 0 20px 0;
+  border-collapse: collapse;
 }
 
 th {
   text-align: left;
-  border-bottom: 1px dashed #b5e853;
+  color: #b6b6b6;
+  font-family: 'OpenSansSemibold', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  border-bottom: 1px solid #434343;
   padding: 5px 10px;
 }
 
 td {
   padding: 5px 10px;
+  border-bottom: 1px solid #434343;
 }
 
 hr {
@@ -227,8 +260,9 @@ hr {
 */
 
 a {
-  color: #63c0f5;
-  text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);
+  color: #6f9ab7;
+  font-weight: 400;
+  text-decoration: none;
 }
 
 /* Clearfix */

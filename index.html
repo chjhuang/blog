@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <title>Blog by chjhuang</title>
+    <title>Blog by Jeff</title>
   </head>
 
   <body>
@@ -31,7 +31,7 @@
         <h1>
 <a id="ubuntu工作环境搭建小记" class="anchor" href="#ubuntu%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ubuntu工作环境搭建小记</h1>
 
-<p>作者 Jeff Chan(<a href="https://github.com/chjhuang" class="user-mention">@chjhuang</a>) | 发布于 2015-06-30</p>
+<p id="author_time">作者 Jeff Chan(<a href="https://github.com/chjhuang" class="user-mention">@chjhuang</a>) | 发布于 2015-06-30</p>
 
 <h2>
 <a id="目录" class="anchor" href="#%E7%9B%AE%E5%BD%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>目录</h2>
@@ -312,7 +312,7 @@ curl https://raw.githubusercontent.com/ghuntley/terminator-solarized/master/conf
 
 <p>使用solarized配色后，你会发现用ls命令查看目录和文件时是一片灰色。这是因为默认情况下solarized各种bright方案基本都是灰色，而系统默认显示目录和文件时多用bright色，此时需要配置dircolors才能显示出彩色的文件和目录。</p>
 
-<p><a href="https://github.com/seebi/dircolors-solarized" title="dircolors solarized">dircolors-solarized</a>项目提供了适合于solarized的dircolors配色方案，只要选择合适的方案使用就可以了。我参照<a href="http://blog.codinglabs.org/articles/getting-started-with-ubuntu.html">http://blog.codinglabs.org/articles/getting-started-with-ubuntu.html</a>中的做法，选择了适合这个配色的dircolors.ansi-dark：</p>
+<p><a href="https://github.com/seebi/dircolors-solarized" title="dircolors solarized">dircolors-solarized</a>项目提供了适合于solarized的dircolors配色方案，只要选择合适的方案使用就可以了。我参照张洋<a href="http://blog.codinglabs.org/articles/getting-started-with-ubuntu.html">博客</a>中的做法，选择了适合这个配色的dircolors.ansi-dark：</p>
 
 <div class="highlight highlight-sh"><pre>curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark \
     <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.dircolors</pre></div>
@@ -449,7 +449,7 @@ curl https://raw.githubusercontent.com/chjhuang/blog/master/2015/06/.vimrc \
     <span class="pl-k">&gt;</span> <span class="pl-k">~</span>/.vimrc</pre></div>
 
 <ol>
-<li>据不同插件，检查并安装各自所需要的运行环境，如语法检查插件<code>synatic</code>需要<code>python-dev</code>环境，<code>vim-instant-markdown</code>需要<code>instant-markdown-d</code>的支持等。各插件说明和需要的前续操作在.vimrc处有说明。</li>
+<li>根据不同插件，检查并安装各自所需要的运行环境，如语法检查插件<code>synatic</code>需要<code>python-dev</code>环境，<code>vim-instant-markdown</code>需要<code>instant-markdown-d</code>的支持等。各插件说明和需要的前续操作在.vimrc处有说明。</li>
 <li>安装好插件的编译环境(有些插件需要)和运行环境后，打开<code>vim</code>，执行命令<code>:PlugInstall</code>进行插件安装。</li>
 <li>插件安装完成后，就可以愉快地Geek and Coding了。</li>
 <li>为了实现<code>一键</code>配置，后续可能会写一个Vim自动配置脚本文件。</li>
