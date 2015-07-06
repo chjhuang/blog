@@ -184,7 +184,7 @@ sudo apt-get install terminator
 
     使用solarized配色后，你会发现用ls命令查看目录和文件时是一片灰色。这是因为默认情况下solarized各种bright方案基本都是灰色，而系统默认显示目录和文件时多用bright色，此时需要配置dircolors才能显示出彩色的文件和目录。
 
-    [dircolors-solarized][]项目提供了适合于solarized的dircolors配色方案，只要选择合适的方案使用就可以了。我参照<http://blog.codinglabs.org/articles/getting-started-with-ubuntu.html>中的做法，选择了适合这个配色的dircolors.ansi-dark：
+    [dircolors-solarized][]项目提供了适合于solarized的dircolors配色方案，只要选择合适的方案使用就可以了。我参照张洋[博客][]的做法，选择了适合这个配色的dircolors.ansi-dark：
 
     ```sh
     curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark \
@@ -214,6 +214,7 @@ sudo apt-get install terminator
 [Solarized]: http://ethanschoonover.com/solarized "Solarized"
 [terminator-solarized]: https://github.com/ghuntley/terminator-solarized "terminator solarized"
 [dircolors-solarized]: https://github.com/seebi/dircolors-solarized "dircolors solarized"
+[博客]: http://blog.codinglabs.org/articles/getting-started-with-ubuntu.html中 "开始使用Ubuntu作为工作环境"
 [terminator manpage]: http://manpages.ubuntu.com/manpages/vivid/man5/terminator_config.5.html "manpage"
 
 <a name="everpad" />

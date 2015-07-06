@@ -1,8 +1,9 @@
-" Change to insert mode File: .vimrc
-" Author: Jake Zimmerman <jake@zimmerman.io>
+" File: .vimrc
+" Author: Jeff Chan
 "
-" How I configure Vim :P
+" Inherit from Jake Zimmerman: https://github.com/jez/vim-as-an-ide
 "
+
 " Gotta be first
 set nocompatible
 
@@ -11,35 +12,90 @@ filetype off
 " ---------------Vim plugins manager: Vim plug ------------------------
 call plug#begin('~/.vim/plugged')
 
-" ---- Auto Completion during typing -----
+" ----- Auto Completion during typing -----
 " Plug 'neocomplcache'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }     " Auto completion engine for many languages such as C
+
+" A code-completion engine for Vim: 
+" https://github.com/Valloric/YouCompleteMe
+" Pre-Install: 
+"  1. install development tools and cmake:
+"      sudo apt-get install build-essential cmake
+"  2. make sure you have python headers installed:
+"      sudo apt-get install python-dev
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --omnisharp-completer' }
+
+" Provides insert mode auto-completion for quotes, parens, brackets, etc
+" https://github.com/Raimondi/delimitMate
+Plug 'Raimondi/delimitMate'
 
 " ----- Making Vim look good ----
-Plug 'altercation/vim-colors-solarized'     " Vim appearance color
+" Precision colorscheme for the vim text editor
+" https://github.com/altercation/vim-colors-solarized
+Plug 'altercation/vim-colors-solarized'
+
 "Plug 'tomasr/molokai'     " Molokai Color Scheme for Vim
-Plug 'bling/vim-airline'     " Status bars and tabs
+
+" Lean & status/tabline for vim
+" https://github.com/bling/vim-airline
+Plug 'bling/vim-airline'
 
 " ----- Vim as a programmer's text editor -----
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeTabsToggle' }   " File explorer NERDTree
-Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }  " Make all tabs share the same NERDTree
-Plug 'scrooloose/nerdcommenter'   " Code comments help tool
-" Syntax checker for lots of languages, eg. C,
-" Java, Html, Tex, Python ...
+" A tree explorer plugin for vim
+" https://github.com/scrooloose/nerdtree
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeTabsToggle' }
+" Make 'Just one NERDTree', independent of tabs
+" https://github.com/jistr/vim-nerdtree-tabs
+Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }
+
+" Vim plugin for intensely orgasmic commenting
+" https://github.com/scrooloose/nerdcommenter
+Plug 'scrooloose/nerdcommenter'
+
+" Syntax checking hacks for vim
+" https://github.com/scrooloose/syntastic
 Plug 'scrooloose/syntastic'
 
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
-Plug 'majutsushi/tagbar'   " , { 'on': 'TagbarToggle' }   ClassViewTag
-Plug 'kien/ctrlp.vim'
-Plug 'vim-scripts/a.vim'
+" Miscellaneous auto-load Vim scripts
+" https://github.com/xolox/vim-misc
+" Here use for auto-loading vim-easytags
+"Plug 'xolox/vim-misc'
+" Automated tag file generation and syntax highlight of tags in Vim
+" https://github.com/xolox/vim-easytags
+" Pre-Install:
+"  1. install ctags: sudo apt-get install exuberant-ctags
+" Hint: I'm not sure whether it's need for tagbar, 
+"       but it still worked when i commented it.
+"Plug 'xolox/vim-easytags'
+
+" Displays the tags of current file and get an overview
+" of it's structure in a window, ordered by scope
+" https://github.com/majutsushi/tagbar
+" Pre-Install:
+"  1. install ctags: sudo apt-get install ctags
+Plug 'majutsushi/tagbar'  ", { 'on': 'TagbarToggle' }  hint: airline use it as a extension
+
+" Fuzzy file, buffer, mru, tag, etc finder
+" https://github.com/ctrlpvim/ctrlp.vim
+" Active fork of https://github.com/kien/ctrlp.vim
+"Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
+" A ctrlp.vim extension - Navigate and jump to functions/classes defs
+" https://github.com/tacahiroy/ctrlp-funky
+" Pre-Install: ctrlp.vim
+Plug 'tacahiroy/ctrlp-funky', { 'on': 'CtrlP'}
+
+" Alternate Files quickly(switch between
+" source files and header files quickly)
+" https://github.com/vim-scripts/a.vim
+"Plug 'vim-scripts/a.vim', { 'for': ['cpp', 'h'] }
 
 " ----- Working with Git -----
+" Shows a git diff in the gutter(sign column) and stages/reverts hunks
+" https://github.com/airblade/vim-gitgutter
 Plug 'airblade/vim-gitgutter', { 'on': 'GitGutterToggle' }
+" A git wrapper so awesome
+" https://github.com/tpope/vim-fugitive
 Plug 'tpope/vim-fugitive', { 'on': 'GitGutterToggle' }
-
-" ----- Other text editing features -----
-Plug 'Raimondi/delimitMate'     " Autocompletion single or double quotes
 
 " ----- man pages, tmux ----
 "Plug 'jez/vim-superman'
@@ -49,25 +105,54 @@ Plug 'Raimondi/delimitMate'     " Autocompletion single or double quotes
 "Plug 'jez/vim-c0'
 "Plug 'jez/vim-ispc'
 "Plug 'kchmck/vim-coffee-script'
+
 " --- XML -------
-Plug 'othree/xml.vim', { 'for': 'xml' }  " On-demand loading
-Plug 'docunext/closetag.vim', { 'for': 'xml' }  " Close open tags
+" Helps editing xml(and [x]html, sgml, xslt) files
+" https://github.com/othree/xml.vim
+Plug 'othree/xml.vim', { 'for': 'xml' }
+" Functions and mappings to close open HTML/XML tags
+" https://github.com/docunext/closetag.vim
+Plug 'docunext/closetag.vim', { 'for': 'xml' }
+
 " --- JS HTML CSS -----
+" Allows you to use jsbeautifier inside vim to quickly
+" format javascript, html and css files
+" https://github.com/maksimr/vim-jsbeautify
+" Pre-Install:
+"   1. install a javascript interpreter: nodejs or v8
 Plug 'maksimr/vim-jsbeautify', { 'for': ['js', 'css', 'html'] }
+" Beautifier for javascript
+" It seems not a vim plugin now
 Plug 'einars/js-beautify', { 'for': ['js', 'css', 'html'] }
+" Automatically closes HTML tags once you finish typing them.
+" https://github.com/vim-scripts/HTML-AutoCloseTag
+Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': 'html' }
+
 " --- Markdown -----
-Plug 'suan/vim-instant-markdown'   " Markdown instant previewer 
+" Instant markdown previews from vim
+" https://github.com/suan/vim-instant-markdown
+" Pre-Install:
+"   1. sudo npm -g install instant-markdown-d
+"   2. sudo apt-get install xdg-utils(is installed by default on Ubuntu)
+Plug 'suan/vim-instant-markdown' 
 
 " ---- Extras/Advanced plugins ----
 "Plug 'ntpeters/vim-better-whitespace'     " Highlight and strip trailing whitespace
 "Plug 'tpope/vim-surround'      " Easily surround chunks of text
 "Plug 'godlygeek/tabular'      " Align CSV files at commas, align Markdown tables, and more
-"Plug 'HTML-AutoCloseTag'      " Automaticall insert the closing HTML tag
 "Plug 'edkolev/tmuxline.vim'      " Make tmux look like vim-airline (read README for extra instructions)
 "Plug 'ekalinin/Dockerfile.vim'
-"Plug 'digitaltoad/vim-jade'
-"Plug 'tpope/vim-liquid'
 "Plug 'cakebaker/scss-syntax.vim'
+
+" Run commands quickly
+" https://github.com/thinca/vim-quickrun
+"Plug 'thinca/vim-quickrun'
+
+" Allows you to visually select increasingly larger regions
+" of text using the same key combination
+" https://github.com/terryma/vim-expand-region
+Plug 'terryma/vim-expand-region'
+
 call plug#end()
 
 filetype plugin indent on
@@ -102,8 +187,8 @@ autocmd BufWritePost ~/.vimrc so ~/.vimrc    " Reload .vimrc after .vimrc change
 
 
 " ------------ Keyboard Shortcuts Setting -------------------------------
-let mapleader = ','   " Set <leader> as ,
-let g:mapleader = ','
+let mapleader = "\<Space>"   " Set <leader> as ,
+let g:mapleader = "\<Space>"
 " -- n, i, v, c Mode -----
 map <C-h> <C-w>h   " move to left vim windows
 map <C-j> <C-w>j   " move to down vim windows
@@ -168,6 +253,17 @@ augroup myYCM
 augroup END
 
 
+" ----- Raimondi/delimitMate settings -----
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
+
+
 " ----- altercation/vim-colors-solarized settings -----
 set background=dark    " Toggle this to "light" for light colorscheme
 "let g:solarized_termcolors=256  " Uncomment the next line if your terminal is not configured for solarized
@@ -204,9 +300,16 @@ let g:airline_symbols.paste = 'ρ'
 "let g:airline#extensions#buffline#enabled = 1
 "let g:airline#extensions#bufferline#overwrite_variables = 1
 
-" Theme setting
+let g:airline#extensions#whitespace#enabled = 0  " disable detection of whitespace errors
+
+" Theme settings
 let g:airline_theme = 'powerlineish'
-set t_Co=256
+set t_Co=256  " fix 'There are no colors' bug
+set ttimeoutlen=50  " fix 'There is a pause when leaving insert mode' bug
+
+" Commands Shortcuts
+" Toggles whitespace detection
+nnoremap <leader>tw :AirlineToggleWhitespace<CR>
 
 
 " ----- jistr/vim-nerdtree-tabs settings -----
@@ -216,12 +319,23 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 "let g:nerdtree_tabs_open_on_console_startup = 0   " To have NERDTree always open on startup
 
 
+" ----- scrooloose/nerdcommenter settings ------
+" Auto add extra spaces after the left delimiter
+let g:NERDSpaceDelims=1
+
+
 " ----- scrooloose/syntastic settings -----
 let g:syntastic_auto_jump = 3   " Make the cursor jump to the first detected error
 let g:syntastic_auto_loc_list = 1   " Open location list automatically when errors are detected
 let g:syntastic_loc_list_height = 5   " Specify the height of the location lists
 let g:syntastic_error_symbol = '✘'
 let g:syntastic_warning_symbol = '⚠'
+
+" Select default checker
+let g:syntastic_python_checkers=['pyflakes']
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_html_checker=['jshint']
+let g:syntastic_css_checker=['csslint']
 
 " Show location list and display the error messages
 nnoremap <leader>se :Errors<CR>
@@ -230,20 +344,20 @@ nnoremap <leader>sc :SyntasticCheck<CR>
 " Get the info about the checker available for current filetype
 nnoremap <leader>si :SyntasticInfo<CR>
 
-augroup mySyntastic
-  au!
-  au FileType tex let b:syntastic_mode = "passive"
-augroup END
+"augroup mySyntastic
+"  au!
+"  au FileType tex let b:syntastic_mode = "passive"
+"augroup END
 
 
 " ----- xolox/vim-easytags settings -----
-set tags=./tags;,~/.vimtags    " Where to look for tags files
+" set tags=./tags;,~/.vimtags    " Where to look for tags files
 " Sensible defaults
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
+" let g:easytags_events = ['BufReadPost', 'BufWritePost']
+" let g:easytags_async = 1
+" let g:easytags_dynamic_files = 2
+" let g:easytags_resolve_links = 1
+" let g:easytags_suppress_ctags_warning = 1
 
 " ----- majutsushi/tagbar settings -----
 " Open/close tagbar with \t
@@ -251,11 +365,48 @@ nnoremap <leader>tt :TagbarToggle<CR>
 let g:tagbar_width = 23  " Set tagbar windows width
 let g:tagbar_indent = 1  " SubItems' indent
 let g:tagbar_expand = 1  " Expand Vim by the width of tagbar width
+let g:tagbar_autofocus = 1  " Auto focus whenever loading
+
+" for ruby, delete if you do not need
+let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'd:describes',
+        \ 'C:contexts',
+        \ 'f:methods',
+        \ 'F:singleton methods'
+    \ ]
+\ }
 "autocmd BufEnter * nested :call tagbar#autoopen(0)  " auto showed whenever new file open
 
+
+" ----- ctrlpvim/ctrlp.vim settings ------
+nmap <leader>cp :CtrlP<CR>
+nmap <leader>cm :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+
+
+" ----- tacahiroy/ctrlp-funky -----
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_extensions = ['funky']
+
+
 " ----- airblade/vim-gitgutter settings -----
-" Open/close gitgutter with ,gt
-nnoremap <leader>gt :GitGutterToggle<CR>
+" Open/close gitgutter with ,go
+nnoremap <leader>go :GitGutterToggle<CR>
 hi clear SignColumn    " Required after having changed the colorscheme 
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1 
@@ -273,14 +424,6 @@ let g:instant_markdown_slow = 1  " Make markdown previewer only refresh on the e
 let g:instant_markdown_autostart = 0  " Manually trigger preview by command
 nnoremap <leader>mp :InstantMarkdownPreview<CR>
 
-" ---- docunext/closetag.vim settings -------
-
-" ----- Raimondi/delimitMate settings -----
-let delimitMate_expand_cr = 1
-augroup mydelimitMate
-  au!
-  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
-  au FileType tex let b:delimitMate_quotes = ""
-  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
-  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
-augroup END
+" ------ terryma/vim-expand-region -------
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)

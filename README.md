@@ -1,2 +1,2 @@
 # Blog
-Reading, Writing and Learning!
+Reading, Learning, Doing, and then Writing!
